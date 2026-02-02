@@ -161,7 +161,7 @@ async def sync_catalog():
                     logger.warning(f"Failed to delete file {file.id}: {delete_error}")
         else:
             # Create new vector store
-            vs = client.beta.vector_stores.create(name="ShopiPet Store")
+            vs = client.beta.vector_stores.create(name="DVG Store")
             vs_id = vs.id
 
             # Update assistant with new vector store

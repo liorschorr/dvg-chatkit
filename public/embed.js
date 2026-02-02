@@ -1,8 +1,8 @@
 (function() {
-    const API_BASE = "https://shopipet-chatkit.vercel.app/api";
-    const STORAGE_KEY = 'shopipet_thread_id';
-    const CONVERSATION_KEY = 'shopipet_conversation';
-    const WIDGET_STATE_KEY = 'shopipet_widget_state';
+    const API_BASE = "https://dvg-chatkit.vercel.app/api";
+    const STORAGE_KEY = 'dvg_thread_id';
+    const CONVERSATION_KEY = 'dvg_conversation';
+    const WIDGET_STATE_KEY = 'dvg_widget_state';
 
     // --- הגדרות צבעים (לפי המיתוג) ---
     const COLORS = {
@@ -14,18 +14,18 @@
         border: '#f0ceda'
     };
 
-    const ICON_URL = "https://dev.shopipet.co.il/wp-content/uploads/2025/01/a2a41b00cd5d45e70524.png";
+    const ICON_URL = "https://dvg.co.il/wp-content/uploads/2025/01/cookiebot-icon.png";
 
     const style = document.createElement('style');
     style.innerHTML = `
         /* איפוס */
-        #shopipet-widget, #shopipet-widget * {
+        #dvg-widget, #dvg-widget * {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             box-sizing: border-box;
         }
 
         /* --- כפתור פתיחה --- */
-        #shopipet-trigger {
+        #dvg-trigger {
             position: fixed; bottom: 20px; right: 20px; left: auto;
             width: 70px; height: 70px; 
             background-color: #fff;
@@ -36,11 +36,11 @@
             align-items: center; justify-content: center;
             transition: transform 0.3s ease;
         }
-        #shopipet-trigger img { width: 80%; height: 80%; object-fit: contain; }
-        #shopipet-trigger:hover { transform: scale(1.1); }
+        #dvg-trigger img { width: 80%; height: 80%; object-fit: contain; }
+        #dvg-trigger:hover { transform: scale(1.1); }
 
         /* --- בועת עזרה --- */
-        #shopipet-welcome-bubble {
+        #dvg-welcome-bubble {
             position: fixed; bottom: 100px; right: 25px;
             background-color: white; color: ${COLORS.textMain};
             padding: 10px 15px; border-radius: 15px; border-bottom-right-radius: 2px;
@@ -48,7 +48,7 @@
             z-index: 99998; cursor: pointer; opacity: 0; transform: translateY(10px);
             transition: opacity 0.4s, transform 0.4s; border: 1px solid ${COLORS.primary};
         }
-        #shopipet-welcome-bubble.show { opacity: 1; transform: translateY(0); }
+        #dvg-welcome-bubble.show { opacity: 1; transform: translateY(0); }
 
         /* --- חלון הצ'אט --- */
         #shopipet-widget {
@@ -479,22 +479,22 @@
             /* שיפור לאייפון למטה */
             padding-bottom: env(safe-area-inset-bottom, 10px);
         }
-        #shopipet-input {
+        #dvg-input {
             flex: 1; padding: 12px 15px;
             border: 2px solid #e0e0e0; border-radius: 25px;
             outline: none; font-size: 16px; /* מונע זום באייפון */
             direction: rtl;
         }
-        #shopipet-input:focus { border-color: ${COLORS.primary}; }
+        #dvg-input:focus { border-color: ${COLORS.primary}; }
         
-        #shopipet-send {
+        #dvg-send {
             background: ${COLORS.primary}; border: none; color: white;
             width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
             display: flex; align-items: center; justify-content: center; font-size: 18px;
             transform: rotate(180deg);
             transition: background 0.3s;
         }
-        #shopipet-send:hover { background-color: #c2185b; }
+        #dvg-send:hover { background-color: #c2185b; }
 
         /* --- מובייל: התיקון הגדול --- */
         @media (max-width: 480px) {
@@ -578,7 +578,7 @@
             }
 
             /* שדה קלט */
-            #shopipet-input {
+            #dvg-input {
                 font-size: 18px; /* +2pt (גם מונע זום באייפון) */
             }
 
@@ -606,7 +606,7 @@
                 background: white;
             }
 
-            #shopipet-trigger { width: 60px; height: 60px; bottom: 15px; right: 15px; }
+            #dvg-trigger { width: 60px; height: 60px; bottom: 15px; right: 15px; }
         }
     `;
     document.head.appendChild(style);
@@ -614,30 +614,30 @@
     // 2. יצירת HTML
     const container = document.createElement('div');
     container.innerHTML = `
-        <div id="shopipet-welcome-bubble">איך אפשר לעזור? 🐾</div>
-        <div id="shopipet-trigger"><img src="${ICON_URL}"></div>
-        <div id="shopipet-widget" dir="rtl">
+        <div id="dvg-welcome-bubble">איך אפשר לעזור? 🍪</div>
+        <div id="dvg-trigger"><img src="${ICON_URL}"></div>
+        <div id="dvg-widget" dir="rtl">
             <div class="chat-header">
-                <span>שופיבוט</span>
+                <span>Cookiebot</span>
                 <span class="typing-status">מקליד...</span>
-                <span id="shopipet-close" style="cursor:pointer;">&times;</span>
+                <span id="dvg-close" style="cursor:pointer;">&times;</span>
             </div>
-            <div id="shopipet-messages" class="chat-messages"></div>
+            <div id="dvg-messages" class="chat-messages"></div>
             <div class="chat-input-area">
-                <input type="text" id="shopipet-input" placeholder="כתוב כאן..." autocomplete="off">
-                <button id="shopipet-send">➤</button>
+                <input type="text" id="dvg-input" placeholder="כתוב כאן..." autocomplete="off">
+                <button id="dvg-send">➤</button>
             </div>
         </div>
     `;
     document.body.appendChild(container);
 
-    const trigger = document.getElementById('shopipet-trigger');
-    const widget = document.getElementById('shopipet-widget');
-    const close = document.getElementById('shopipet-close');
-    const bubble = document.getElementById('shopipet-welcome-bubble');
-    const messages = document.getElementById('shopipet-messages');
-    const input = document.getElementById('shopipet-input');
-    const send = document.getElementById('shopipet-send');
+    const trigger = document.getElementById('dvg-trigger');
+    const widget = document.getElementById('dvg-widget');
+    const close = document.getElementById('dvg-close');
+    const bubble = document.getElementById('dvg-welcome-bubble');
+    const messages = document.getElementById('dvg-messages');
+    const input = document.getElementById('dvg-input');
+    const send = document.getElementById('dvg-send');
 
     // בועה
     setTimeout(() => bubble.classList.add('show'), 1000);

@@ -1,6 +1,6 @@
-# ShopiBot • ChatKit-ready (WooCommerce + Google Sheets + ChatGPT)
+# Cookiebot • ChatKit-ready (WooCommerce + Google Sheets + ChatGPT)
 
-This project gives you a production-ready API and a minimal floating web chat to run on **shopipet.co.il**.
+This project gives you a production-ready API and a minimal floating web chat to run on **dvg.co.il**.
 - **Backend**: FastAPI on Vercel
 - **Data**: Google Sheets (ID: `1-XfEIXT0ovbhkWnBezc4v2xIcmUdONC7mAcep9554q8`)
 - **LLM**: OpenAI (ChatGPT) via `OPENAI_API_KEY`     
@@ -16,13 +16,13 @@ Upload this folder as a new Vercel project. Then set Environment Variables:
 Endpoints after deploy:
 - `GET /api/ping`
 - `GET /api/search?q=cat`
-- `POST /api/chat` with JSON `{"message":"אני צריך מזון לגור כלבים"}`
+- `POST /api/chat` with JSON `{"message":"אני מחפש עוגיות שוקולד צ'יפס"}`
 
 ## 2) Connect to WooCommerce
 Add `web/embed.js` to your theme footer or with a plugin like "Insert Headers and Footers".
 Before publishing, edit `VERCEL_API_BASE` inside `web/embed.js` to your domain, e.g.:
 ```
-const VERCEL_API_BASE = 'https://shopipet-chat.vercel.app';
+const VERCEL_API_BASE = 'https://dvg-chatkit.vercel.app';
 ```
 
 ## 3) (Optional) Use ChatKit

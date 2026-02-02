@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide will help you configure the OpenAI Assistant API for streaming responses with the ShopiPet ChatKit.
+This guide will help you configure the OpenAI Assistant API for streaming responses with the DVG ChatKit.
 
 ---
 

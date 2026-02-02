@@ -1,5 +1,5 @@
 """
-ShopiPet ChatKit - FastAPI Entry Point
+DVG ChatKit - FastAPI Entry Point
 Main application with CORS, global exception handling, and router registration.
 """
 from fastapi import FastAPI, Request
@@ -15,8 +15,8 @@ logger = logging.getLogger(__name__)
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="ShopiPet ChatKit API",
-    description="AI-powered chat widget for WooCommerce stores",
+    title="DVG ChatKit API",
+    description="AI-powered chat widget for cookie stores",
     version="2.0.0"
 )
 
@@ -100,7 +100,7 @@ async def root():
     """Root endpoint for health checks"""
     return {
         "status": "ok",
-        "service": "ShopiPet ChatKit",
+        "service": "DVG ChatKit",
         "version": "2.0.0"
     }
 

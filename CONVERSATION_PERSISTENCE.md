@@ -68,9 +68,9 @@ The conversation is restored:
 ### **Storage Keys:**
 
 ```javascript
-const STORAGE_KEY = 'shopipet_thread_id';           // OpenAI thread ID (existing)
-const CONVERSATION_KEY = 'shopipet_conversation';   // Conversation HTML + timestamp
-const WIDGET_STATE_KEY = 'shopipet_widget_state';   // Open/Closed state
+const STORAGE_KEY = 'dvg_thread_id';           // OpenAI thread ID (existing)
+const CONVERSATION_KEY = 'dvg_conversation';   // Conversation HTML + timestamp
+const WIDGET_STATE_KEY = 'dvg_widget_state';   // Open/Closed state
 ```
 
 ---
@@ -323,7 +323,7 @@ If NO:
 **Before Fix:**
 ```
 User: Opens chat
-User: "I need dog food"
+User: "I need chocolate chip cookies"
 Bot: [Shows products]
 User: Clicks link to product page
 → Returns to homepage
@@ -333,7 +333,7 @@ User: Clicks link to product page
 **After Fix:**
 ```
 User: Opens chat
-User: "I need dog food"
+User: "I need chocolate chip cookies"
 Bot: [Shows products]
 User: Clicks link to product page
 → Returns to homepage
@@ -392,12 +392,12 @@ User: Clicks trigger to reopen
 
 ### **What's Stored:**
 
-**1. Thread ID** (`shopipet_thread_id`)
+**1. Thread ID** (`dvg_thread_id`)
 - OpenAI conversation thread
 - Never expires (needed for API)
 - Example: `"thread_abc123xyz"`
 
-**2. Conversation** (`shopipet_conversation`)
+**2. Conversation** (`dvg_conversation`)
 - Full HTML of messages area
 - Timestamp for expiration
 - Example:
@@ -408,7 +408,7 @@ User: Clicks trigger to reopen
 }
 ```
 
-**3. Widget State** (`shopipet_widget_state`)
+**3. Widget State** (`dvg_widget_state`)
 - Open or closed
 - Example: `"open"` or `"closed"`
 

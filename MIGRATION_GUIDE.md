@@ -1,4 +1,4 @@
-# ShopiPet ChatKit - FastAPI Migration Guide
+# DVG ChatKit - FastAPI Migration Guide
 
 ## Phase 1: Infrastructure Upgrade ✅ COMPLETED
 
@@ -251,7 +251,7 @@ if redis.get("catalog_hash") == catalog_hash:
 ## File Structure
 
 ```
-shopipet-chatkit/
+dvg-chatkit/
 ├── api/
 │   ├── index.py          ✅ NEW - FastAPI entry point
 │   ├── models.py         ✅ NEW - Pydantic models

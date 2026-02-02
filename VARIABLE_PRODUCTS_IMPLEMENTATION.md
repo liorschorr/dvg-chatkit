@@ -344,7 +344,7 @@ formData.append('add-to-cart', 12345);
 ## 🚀 **Deployment Instructions**
 
 ```bash
-cd "/Users/liorschorr/Library/CloudStorage/GoogleDrive-lior@digitalior.co.il/My Drive/lior_software/shopipet-chatkit"
+cd "/Users/liorschorr/Library/CloudStorage/GoogleDrive-lior@digitalior.co.il/My Drive/lior_software/dvg-chatkit"
 
 git add .
 git commit -m "Add variable product support with variations selector"

@@ -54,7 +54,7 @@ class handler(BaseHTTPRequestHandler):
             if tool_res and tool_res.file_search and tool_res.file_search.vector_store_ids:
                 vs_id = tool_res.file_search.vector_store_ids[0]
             else:
-                vs = client.beta.vector_stores.create(name="ShopiPet Store")
+                vs = client.beta.vector_stores.create(name="DVG Store")
                 vs_id = vs.id
                 client.beta.assistants.update(
                     assistant_id=assistant_id,

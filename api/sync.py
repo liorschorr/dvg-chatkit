@@ -181,7 +181,7 @@ class handler(BaseHTTPRequestHandler):
                     try: client.beta.vector_stores.files.delete(vector_store_id=vs_id, file_id=file.id)
                     except: pass
             else:
-                vs = client.beta.vector_stores.create(name="ShopiPet Store")
+                vs = client.beta.vector_stores.create(name="DVG Store")
                 vs_id = vs.id
                 client.beta.assistants.update(
                     assistant_id=assistant_id,

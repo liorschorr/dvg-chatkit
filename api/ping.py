@@ -8,4 +8,4 @@ class handler(BaseHTTPRequestHandler):
         for k, v in cors_headers().items():
             self.send_header(k, v)
         self.end_headers()
-        self.wfile.write(json.dumps({"status": "ok", "service": "ShopiPet ChatKit"}).encode('utf-8'))
+        self.wfile.write(json.dumps({"status": "ok", "service": "DVG ChatKit"}).encode('utf-8'))

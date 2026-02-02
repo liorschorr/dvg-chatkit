@@ -6,8 +6,11 @@ import requests
 from utils.cors import cors_headers
 
 # שינוי: Redis URL
-redis_url = os.environ.get("shopipetbot_REDIS_URL")
-r = redis.from_url(redis_url, ssl_cert_reqs=None)
+def get_redis_client():
+    redis_url = os.environ.get("dvgbot_REDIS_URL")
+    if not redis_url:
+        raise ValueError("dvgbot_REDIS_URL not configured")
+    return redis.from_url(redis_url, ssl_cert_reqs=None)
 
 class handler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):
@@ -23,6 +26,7 @@ class handler(BaseHTTPRequestHandler):
         phone = body.get("phone")
         user_code = body.get("code")
 
+        r = get_redis_client()
         stored_code = r.get(f"otp:{phone}")
         
         if not stored_code or stored_code.decode('utf-8') != user_code:

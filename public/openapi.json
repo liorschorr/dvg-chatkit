@@ -1,12 +1,12 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "ShopiBot API",
+    "title": "Cookiebot API",
     "version": "1.2.0",
-    "description": "API לצ'אטבוט של Shopipet.co.il - חנות מוצרים לחיות מחמד"
+    "description": "API לצ'אטבוט של DVG.co.il - חנות עוגיות וממתקים"
   },
   "servers": [
-    { "url": "https://shopipet-chatkit.vercel.app" }
+    { "url": "https://dvg-chatkit.vercel.app" }
   ],
   "paths": {
     "/api/ping": {
@@ -19,7 +19,7 @@
     },
     "/api/chat": {
       "post": {
-        "summary": "Ask ShopiBot a question",
+        "summary": "Ask Cookiebot a question",
         "requestBody": {
           "required": true,
           "content": {
